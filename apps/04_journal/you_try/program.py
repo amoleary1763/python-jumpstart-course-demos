@@ -1,3 +1,4 @@
+import journal
 
 # Skeleton
 """
@@ -28,7 +29,10 @@ def run_event_loop():
 
     print('What action would you like to take?')
     cmd = None
-    journal_data = [] # list()
+    # list() and [] mean exactly the same thing
+    journal_name = 'default'
+    journal_data = journal.load(journal_name)
+
 
     while cmd != 'x':
         cmd = input('[L]ist entries, [A]dd an entry, E[x]ist: ')
@@ -42,6 +46,7 @@ def run_event_loop():
             print("Sorry, {} doesn't tell me what you want".format(cmd))
 
     print("bye bitch")
+    journal.save(journal_name, journal_data)
 
 def list_entries(data):
     print("Your journal entries:")
@@ -51,6 +56,7 @@ def list_entries(data):
 
 def add_entry(data):
     text = input('Type or entry, <enter> to exit: ')
-    data.append(text)
+    journal.add_entry(text, data)
+    # data.append(text)
 
 main()
