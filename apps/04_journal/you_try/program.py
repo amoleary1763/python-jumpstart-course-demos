@@ -28,13 +28,13 @@ def main():
 def run_event_loop():
 
     print('What action would you like to take?')
-    cmd = None
+    cmd = 'EMPTY'
     # list() and [] mean exactly the same thing
     journal_name = 'default'
     journal_data = journal.load(journal_name)
 
 
-    while cmd != 'x':
+    while cmd != 'x' or cmd:
         cmd = input('[L]ist entries, [A]dd an entry, E[x]ist: ')
         cmd.lower().strip()
 
@@ -42,7 +42,7 @@ def run_event_loop():
             list_entries(journal_data)
         elif cmd == 'a':
             add_entry(journal_data)
-        elif cmd != 'x':
+        elif cmd != 'x' and cmd:
             print("Sorry, {} doesn't tell me what you want".format(cmd))
 
     print("bye bitch")

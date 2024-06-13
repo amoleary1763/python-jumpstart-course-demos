@@ -1,6 +1,16 @@
+"""
+This is the journal module
+"""
+
+
 import os
 def load(name):
-    #todo: populate from file if it exists
+    """
+    This method loads and loads a new journal.
+
+    :param name: This base name of the journal to load.
+    :return: A new journal data structure populated with the file data.
+    """
     data = []
     filename = get_full_pathname(name)
     if os.path.exists(filename):
@@ -37,7 +47,8 @@ def save(name, journal_data):
 
 def get_full_pathname(name):
     #C:\Users\ameli\PycharmProjects\python-jumpstart-course-demos\apps\04_journal\final\journals
-    filename = os.path.abspath(os.path.join('.' 'journals', name + '.jrl'))
+    # on windows this is an issue ^^ is showing up with double \\
+    filename = os.path.abspath(os.path.join('journals', name + '.jrl'))
     return(filename)
 
 def add_entry(text, journal_data):
